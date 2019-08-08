@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import styles from "./styles.css";
 import CommentList from "../comment-list";
 import { deleteArticle } from "../../ac";
 
-function Article({ article, isOpen, onBtnClick, deleteArticle }) {
+export function Article({ article, isOpen, onBtnClick, deleteArticle }) {
   useEffect(() => {
     //subscribe
     console.log("subscribe for ", article.id);
@@ -28,6 +29,15 @@ function Article({ article, isOpen, onBtnClick, deleteArticle }) {
     </div>
   );
 }
+
+Article.propTypes = {
+  article: PropTypes.shape({
+    date: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    comments: PropTypes.isArray
+  }).isRequired
+};
 
 export default connect(
   null,

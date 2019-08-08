@@ -2,12 +2,14 @@ import React from "react";
 import Header from "./header";
 import ArticleList from "./article-list";
 import Counter from "./counter";
+import Filter from "./filter/filter";
 
 function App() {
   return (
     <div>
       <Header />
-      <Counter />
+      <Filter />
+      {/* <Counter /> */}
       <ArticleList />
     </div>
   );

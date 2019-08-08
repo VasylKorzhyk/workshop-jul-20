@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Article from "../article";
 import accordion from "../../decorators/accordion";
 
 @connect(state => ({ articles: state.articles }))
 @accordion
 class ArticleList extends React.Component {
+  static propTypes = {
+    articles: PropTypes.array.isRequired,
+    defaultOpenId: PropTypes.number,
+    isOpen: PropTypes.func,
+    setOpenId: PropTypes.func
+  };
+
   render() {
     const { articles, defaultOpenId, isOpen, setOpenId } = this.props;
 
     return (
-      <div ref={this.setContainerRef}>
+      <div ref={this.setContainerRef} data-id="article-list-body">
         {articles.map(article => (
           <Article
+            data-id="article-body"
             key={article.id}
             article={article}
             isOpen={isOpen(article.id)}
