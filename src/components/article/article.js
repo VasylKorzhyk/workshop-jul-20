@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import styles from "./styles.css";
-import CommentList from "../comment-list";
-import { deleteArticle } from "../../ac";
+import CommentList from "./../comment-list";
 
-export function Article({ article, isOpen, onBtnClick, deleteArticle }) {
+function Article({ article, isOpen, onBtnClick }) {
   useEffect(() => {
     //subscribe
     console.log("subscribe for ", article.id);
@@ -14,8 +11,8 @@ export function Article({ article, isOpen, onBtnClick, deleteArticle }) {
   }, [article.id]);
 
   const body = isOpen && (
-    <section data-id="article-body">
-      <p>{article.text}</p>
+    <section>
+      <p>{article.text.split("").join(" ")}</p>
       <CommentList comments={article.comments} />
     </section>
   );
@@ -23,23 +20,10 @@ export function Article({ article, isOpen, onBtnClick, deleteArticle }) {
   return (
     <div>
       <h3 className={styles.header}>{article.title}</h3>
-      <button onClick={() => deleteArticle(article.id)}>Delete me</button>
       {body}
       <button onClick={onBtnClick}>{isOpen ? "hide" : "open"} article</button>
     </div>
   );
 }
 
-Article.propTypes = {
-  article: PropTypes.shape({
-    date: PropTypes.string,
-    title: PropTypes.string,
-    text: PropTypes.string,
-    comments: PropTypes.isArray
-  }).isRequired
-};
-
-export default connect(
-  null,
-  { deleteArticle }
-)(Article);
+export default Article;

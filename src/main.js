@@ -1,12 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import store from "./store";
-import App from "./components/app";
+import Header from "./components/header";
+import articles from "./fixtures";
+import ArticleList from "./components/article-list";
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <div>
+    <Header />
+    <ArticleList articles={articles} defaultOpenId={articles[0].id} />
+  </div>,
   document.getElementById("app")
 );

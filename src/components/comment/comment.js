@@ -1,20 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+import styles from "./styles.css";
 
 function Comment({ comment }) {
   return (
-    <div>
-      <p data-id="comment-text">{comment.text}</p>
-      <b>{comment.user}</b>
+    <div className={styles.comment}>
+      <p className={styles.header}>{comment.user}</p>
+      <span className={styles.body}>{comment.text}</span>
     </div>
   );
 }
-
-Comment.propTypes = {
-  comment: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    user: PropTypes.string
-  }).isRequired
-};
 
 export default Comment;
